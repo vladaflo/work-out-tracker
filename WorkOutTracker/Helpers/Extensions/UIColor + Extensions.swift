@@ -9,20 +9,20 @@ import UIKit
 
 extension UIColor {
     convenience init(hexString: String) {
-        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int = UInt64()
-        Scanner(string: hex).scanInt64(&int)
-        let a, r, g, b: UInt64
-        switch hex.count {
-        case 3:
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6:
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8:
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default:
-            (a, r, g, b) = (255, 0, 0, 0)
-                            }
-                            self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+        var hex = hexString.trimmingCharacters(in: .whitespacesAndNewlines)
+        hex = hex.replacingOccurrences(of: "#", with: "")
+
+        guard hex.count == 6, let int = Int(hex, radix: 16) else {
+            self.init(white: 0.0, alpha: 1.0) // fallback to black
+            return
+        }
+
+        self.init(
+            red: CGFloat((int >> 16) & 0xFF) / 255.0,
+            green: CGFloat((int >> 8) & 0xFF) / 255.0,
+            blue: CGFloat(int & 0xFF) / 255.0,
+            alpha: 1.0
+        )
     }
 }
+
