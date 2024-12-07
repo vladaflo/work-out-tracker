@@ -39,11 +39,16 @@ extension WeekView {
         
         stackView.distribution = .fillEqually
         
-        let weekdays = calendar.shortStandaloneWeekdaySymbols
+        var weekdays = Date.calendar.shortStandaloneWeekdaySymbols
         
-        weekdays.forEach { _ in
+        if Date.calendar.firstWeekday == 2 {
+            let sun = weekdays.remove(at: 0)
+            weekdays.append(sun)
+        }
+        
+        weekdays.enumerated().forEach { index, name in
             let view = WeekDayView()
-            
+            view.configure(with: index, and: name)
             stackView.addArrangedSubview(view)
         }
     }
