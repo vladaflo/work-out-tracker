@@ -21,10 +21,14 @@ enum Resources {
     
     enum Strings {
         enum TabBar {
-            static var overview = "Overview"
-            static var session = "Session"
-            static var progress = "Progress"
-            static var settings = "Settings"
+            static func title(for tab: Tabs) -> String {
+                switch tab {
+                case .overview: return "Overview"
+                case .session: return "Session"
+                case .progress: return "Progress"
+                case .settings: return "Settings"
+                }
+            }
         }
         
         enum NavigationBar {
@@ -53,13 +57,17 @@ enum Resources {
         }
     }
         
-        enum Images {
-            enum TabBar {
-                static var overview = UIImage(named: "overview_tab")
-                static var session = UIImage(named: "session_tab")
-                static var progress = UIImage(named: "progress_tab")
-                static var settings = UIImage(named: "settings_tab")
+    enum Images {
+        enum TabBar {
+            static func icon(for tab: Tabs) -> UIImage? {
+                switch tab {
+                case .overview: return UIImage(named: "overview_tab")
+                case .session: return UIImage(named: "session_tab")
+                case .progress: return UIImage(named: "progress_tab")
+                case .settings: return UIImage(named: "settings_tab")
+                }
             }
+        }
             
             enum Common {
                 static var downArrow = UIImage(named: "down_arrow")

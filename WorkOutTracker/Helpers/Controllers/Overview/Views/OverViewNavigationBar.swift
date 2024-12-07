@@ -30,17 +30,17 @@ final class OverViewNavigationBar: BaseView {
 }
 
 extension OverViewNavigationBar {
-    override func addViews() {
-        super.addViews()
+    override func setupViews() {
+        super.setupViews()
         
-        addView(titleLabel)
-        addView(addButton)
-        addView(allWorkoutsButton)
-        addView(weekView)
+        setupView(titleLabel)
+        setupView(addButton)
+        setupView(allWorkoutsButton)
+        setupView(weekView)
     }
     
-    override func layoutViews() {
-        super.layoutViews()
+    override func constraintViews() {
+        super.constraintViews()
         
         NSLayoutConstraint.activate([
             addButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
@@ -51,9 +51,8 @@ extension OverViewNavigationBar {
             allWorkoutsButton.topAnchor.constraint(equalTo: addButton.topAnchor),
             allWorkoutsButton.trailingAnchor.constraint(equalTo: addButton.leadingAnchor, constant: -15),
             allWorkoutsButton.heightAnchor.constraint(equalToConstant: 28),
-            allWorkoutsButton.widthAnchor.constraint(equalToConstant: 130),
             
-            titleLabel.centerYAnchor.constraint(equalTo: addButton.centerYAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: allWorkoutsButton.centerYAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: allWorkoutsButton.leadingAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             
@@ -65,8 +64,8 @@ extension OverViewNavigationBar {
         ])
     }
     
-    override func configureView() {
-        super.configureView()
+    override func configureAppearance() {
+        super.configureAppearance()
         backgroundColor = .white
         
 //        titleLabel.translatesAutoresizingMaskIntoConstraints = false

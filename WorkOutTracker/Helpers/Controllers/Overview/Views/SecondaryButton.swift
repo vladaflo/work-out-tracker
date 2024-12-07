@@ -15,9 +15,9 @@ final class SecondaryButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addViews()
-        layoutViews()
-        configure()
+        setupViews()
+        constraintViews()
+        configureAppearance()
     }
     
     required init?(coder: NSCoder) {
@@ -31,12 +31,13 @@ final class SecondaryButton: UIButton {
 
 private extension SecondaryButton {
     
-    func addViews() {
-        addView(label)
-        addView(iconView)
+    func setupViews() {
+        
+        setupView(label)
+        setupView(iconView)
     }
     
-    func layoutViews() {
+    func constraintViews() {
         NSLayoutConstraint.activate([
             iconView.centerYAnchor.constraint(equalTo: centerYAnchor),
             iconView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
@@ -49,7 +50,7 @@ private extension SecondaryButton {
         ])
     }
     
-    func configure() {
+    func configureAppearance() {
         
         backgroundColor = Resources.Colors.secondary
         layer.cornerRadius = 14
