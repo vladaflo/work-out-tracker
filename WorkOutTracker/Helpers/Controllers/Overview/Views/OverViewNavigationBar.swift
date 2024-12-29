@@ -9,9 +9,26 @@ import UIKit
 
 final class OverViewNavigationBar: BaseView {
     
-    private let titleLabel = UILabel()
-    private let allWorkoutsButton = SecondaryButton()
-    private let addButton = UIButton()
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = Resources.Strings.NavigationBar.overview
+        label.textColor = Resources.Colors.titleGray
+        label.font = Resources.Fonts.helveticaRegular(with: 22)
+        return label
+    }()
+    
+    private let allWorkoutsButton: WAButton = {
+        let button = WAButton (with: .secondary)
+        button.setTitle(Resources.Strings.OverView.allWorkoutsButton)
+        return button
+    }()
+    
+    private let addButton: UIButton = {
+        let button = UIButton()
+        button.setImage(Resources.Images.Common.addButton, for: .normal)
+        return button
+    }()
+    
     private let weekView = WeekView()
     
     override func layoutSubviews() {
@@ -68,17 +85,11 @@ extension OverViewNavigationBar {
         super.configureAppearance()
         backgroundColor = .white
         
-//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = Resources.Strings.NavigationBar.overview
         titleLabel.textColor = Resources.Colors.titleGray
         titleLabel.font = Resources.Fonts.helveticaRegular(with: 22)
         
-//        allWorkoutsButton.translatesAutoresizingMaskIntoConstraints = false
         allWorkoutsButton.setTitle(Resources.Strings.OverView.allWorkoutsButton)
-        
-//        addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.setImage(Resources.Images.Common.addButton, for: .normal)
-        
-//       weekView.translatesAutoresizingMaskIntoConstraints = false
     }
 }

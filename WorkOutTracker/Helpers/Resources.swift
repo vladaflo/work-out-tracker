@@ -9,14 +9,14 @@ import UIKit
 
 enum Resources {
     enum Colors {
-        static var active = UIColor(hexString: "#4378FE")
-        static var inactive = UIColor(hexString: "#929DA5")
+        static let active = UIColor(hexString: "#4378FE")
+        static let inactive = UIColor(hexString: "#929DA5")
         
-        static var background = UIColor(hexString: "#F8F9F9")
-        static var separator = UIColor(hexString: "#E8ECEF")
-        static var secondary = UIColor(hexString: "#F0F3FF")
+        static let background = UIColor(hexString: "#F8F9F9")
+        static let separator = UIColor(hexString: "#E8ECEF")
+        static let secondary = UIColor(hexString: "#F0F3FF")
         
-        static var titleGray = UIColor(hexString: "#545C77")
+        static let titleGray = UIColor(hexString: "#545C77")
     }
     
     enum Strings {
@@ -43,20 +43,39 @@ enum Resources {
         }
         
         enum Session {
-            static var navigationBarLeft = "Pause"
-            static var navigationBarRight = "Finish"
+            static var navigationBarStart = "Start"
+            static let navigationBarPause = "Pause"
+            static var navigationBarFinish = "Finish"
+            
+            static let elapsedTime = "Elapsed Time"
+            static let remainingTime = "Remaining Time"
+            static let completed = "Completed"
+            static let remaining = "Remaining"
+            
+            static let workoutStats = "Workout stats"
+            static let avarageRate = "Avarage Rate"
+            static let heartRate = "Heart rate"
+            static let totalDistance = "Total Distance"
+            static let totalSteps = "Total Steps"
+            
+            static let stepsCounter = "Steps Counter"
+            
         }
         
         enum Progress {
             static var navigationBarLeft = "Export"
             static var navigationBarRight = "Details"
-        }
-        
-        enum Settings {
             
+            
+            static let dailyPerformance = "Daily Performance"
+            static let monthlyPerformance = "Monthly Performance"
+            static let last7Days = " Last 7 days"
+            static let last10Months = " Last 10 months"
         }
-    }
         
+        enum Settings {}
+    }
+    
     enum Images {
         enum TabBar {
             static func icon(for tab: Tabs) -> UIImage? {
@@ -68,15 +87,31 @@ enum Resources {
                 }
             }
         }
-            
-            enum Common {
-                static var downArrow = UIImage(named: "down_arrow")
-                static var addButton = UIImage(named: "add_button")
-            }
+        
+        enum Common {
+            static let downArrow = UIImage(named: "down_arrow")
+            static let addButton = UIImage(named: "add_button")
         }
-        enum Fonts {
-            static func helveticaRegular(with size: CGFloat) -> UIFont {
-                UIFont(name: "Helvetica", size: size) ?? UIFont()
+        
+        enum Overview {
+            static let checkmarkNotDone = UIImage(named: "checkmark_not_done")
+            static let checkmarkDone = UIImage(named: "checkmark_done")
+            static let rightArrow = UIImage(named: "right_arrow")
+        }
+        
+        enum Session {
+            enum Stats {
+                static let averagePace = UIImage(named: "stats_average_pace")
+                static let heartRate = UIImage(named: "stats_heart_rate")
+                static let totalDistance = UIImage(named: "stats_total_distance")
+                static let totalSteps = UIImage(named: "stats_total_steps")
             }
         }
     }
+    
+    enum Fonts {
+        static func helveticaRegular(with size: CGFloat) -> UIFont {
+            UIFont(name: "Helvetica", size: size) ?? UIFont()
+        }
+    }
+}

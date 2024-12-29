@@ -16,19 +16,19 @@ enum Tabs: Int, CaseIterable {
 
 final class TabBarController: UITabBarController {
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    init() {
+           super.init(nibName: nil, bundle: nil)
+        
         configureAppearance()
+        switchTo(tab: .progress)
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configureAppearance()
+           fatalError("init(coder:) is not supported, as Storyboard is not used.")
     }
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        configureAppearance()
+    func switchTo(tab: Tabs) {
+        selectedIndex = tab.rawValue
     }
     
     private func configureAppearance() {
@@ -40,22 +40,22 @@ final class TabBarController: UITabBarController {
         tabBar.layer.masksToBounds = true
         
         let controllers: [NavigationBarController] = Tabs.allCases.map { tab in
-                    let controller = NavigationBarController(rootViewController: getController(for: tab))
+            let controller = NavigationBarController(rootViewController: getController(for: tab))
             controller.tabBarItem = UITabBarItem(title: Resources.Strings.TabBar.title(for: tab),
                                                  image: Resources.Images.TabBar.icon(for: tab),
-                                                         tag: tab.rawValue)
-                    return controller
-                }
-
-                setViewControllers(controllers, animated: false)
-            }
-
-            private func getController(for tab: Tabs) -> BaseController {
-                switch tab {
-                case .overview: return OverViewController()
-                case .session: return SessionController()
-                case .progress: return ProgressController()
-                case .settings: return SettingsController()
-                }
-            }
+                                                 tag: tab.rawValue)
+            return controller
         }
+        
+        setViewControllers(controllers, animated: false)
+    }
+    
+    private func getController(for tab: Tabs) -> BaseController {
+        switch tab {
+        case .overview: return OverViewController()
+        case .session: return SessionController()
+        case .progress: return ProgressController()
+        case .settings: return SettingsController()
+        }
+    }
+}

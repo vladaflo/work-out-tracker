@@ -26,7 +26,6 @@ class BaseController: UIViewController {
 @objc extension BaseController {
     
     func setupViews() {}
-    
     func constraintViews() {}
     
     func configureAppearance() {
@@ -57,6 +56,15 @@ extension BaseController {
         case .right:
             button.addTarget(self, action: #selector(NavigationBarRightButtonHandler), for: .touchUpInside)
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+        }
+    }
+    
+    func setTitleForNavigationBarButton(_ title: String, at position: NavigationBarPosition) {
+        switch position {
+        case .left:
+            (navigationItem.leftBarButtonItem?.customView as? UIButton)?.setTitle(title, for: .normal)
+        case .right:
+            (navigationItem.rightBarButtonItem?.customView as? UIButton)?.setTitle(title, for: .normal)
         }
     }
 }

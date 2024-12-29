@@ -17,7 +17,9 @@ class BaseInfoViews: BaseView {
         return label
     }()
     
-    private let contentView: UIView = {
+    private let button = WAButton (with: .primary)
+    
+    let contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.borderColor = Resources.Colors.separator.cgColor
@@ -26,15 +28,22 @@ class BaseInfoViews: BaseView {
         return view
     }()
     
-    init (with title: String? = nil, alignment: NSTextAlignment = .left) {
+    init (with title: String? = nil, buttonTitle: String? = nil) {
         titleLabel.text = title?.uppercased()
-        titleLabel.textAlignment = alignment
+        titleLabel.textAlignment = buttonTitle == nil ? .center : .left
+       
+        button.setTitle(buttonTitle?.uppercased())
+        button.isHidden = buttonTitle == nil ? true : false
         
         super.init(frame: .zero)
     }
     
     required init?(coder: NSCoder) {
         super.init(frame: .zero)
+    }
+    
+    func addButtonTarget(target: Any?, action: Selector) {
+        button.addTarget(action, action: action, for: .touchUpInside)
     }
 }
 
@@ -44,6 +53,7 @@ extension BaseInfoViews {
         super.setupViews()
         
         setupView(titleLabel)
+        setupView(button)
         setupView(contentView)
     }
     
@@ -57,6 +67,10 @@ extension BaseInfoViews {
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.topAnchor.constraint(equalTo: topAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            button.trailingAnchor.constraint(equalTo: trailingAnchor),
+            button.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            button.heightAnchor.constraint(equalToConstant: 28),
             
             contentView.topAnchor.constraint(equalTo: contetnTopAnchor, constant: contetnTopOffset),
             contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
