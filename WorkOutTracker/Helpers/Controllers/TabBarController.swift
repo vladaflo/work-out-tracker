@@ -20,7 +20,7 @@ final class TabBarController: UITabBarController {
            super.init(nibName: nil, bundle: nil)
         
         configureAppearance()
-        switchTo(tab: .progress)
+        //switchTo(tab: .progress) переключение экранов загрузки
     }
     
     required init?(coder: NSCoder) {

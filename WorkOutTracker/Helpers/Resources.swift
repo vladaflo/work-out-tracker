@@ -94,8 +94,8 @@ enum Resources {
         }
         
         enum Overview {
-            static let checkmarkNotDone = UIImage(named: "checkmark_not_done")
-            static let checkmarkDone = UIImage(named: "checkmark_done")
+            static let checkmarkNotDone = UIImage(named: "check_not_done")
+            static let checkmarkDone = UIImage(named: "check_done")
             static let rightArrow = UIImage(named: "right_arrow")
         }
         
