@@ -35,7 +35,5 @@ extension MonthlyPerformanceView {
     
     override func configureAppearance() {
         super.configureAppearance()
-        
-        chartsView.backgroundColor = .cyan
     }
 }
