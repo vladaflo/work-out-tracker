@@ -40,7 +40,7 @@ extension XAxisView {
     }
     
     override func constraintViews() {
-        super.constraintViews()
+        super.constraintViews() 
         
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),

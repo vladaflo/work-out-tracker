@@ -34,8 +34,11 @@ final class SectionHeaderView: UICollectionReusableView {
         configureAppearance()
 }
     
-    func configure(with title: String) {
-        self.title.text = title.uppercased()
+    func configure(with date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMMM, dd"
+        
+        self.title.text = dateFormatter.string(from: date).uppercased()
     }
 }
 
@@ -46,7 +49,7 @@ private extension SectionHeaderView {
     func constaintViews() {
         NSLayoutConstraint.activate([
             title.centerXAnchor.constraint(equalTo: centerXAnchor),
-            title.centerXAnchor.constraint(equalTo: centerXAnchor)
+            title.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     func configureAppearance() {
