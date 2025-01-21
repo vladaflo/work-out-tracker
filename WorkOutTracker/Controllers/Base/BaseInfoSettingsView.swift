@@ -14,6 +14,7 @@ class BaseInfoSettingsView: BaseView {
         label.font = Resources.Fonts.helveticaRegular(with: 17)
         label.textColor = Resources.Colors.titleGray
         label.text = "Account Settings"
+
         return label
     }()
     
@@ -23,6 +24,7 @@ class BaseInfoSettingsView: BaseView {
         view.layer.borderColor = Resources.Colors.separator.cgColor
         view.layer.borderWidth = 1
         view.layer.cornerRadius = 10
+
         return view
     }()
 }
@@ -36,21 +38,15 @@ extension BaseInfoSettingsView {
         
     }
     
-    func constaintViews() {
+    override func constraintViews() {
         super.constraintViews()
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 60),
-            titleLabel.topAnchor.constraint(equalTo: loginView.topAnchor, constant: 15),
-            titleLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor, constant: -16),
-            
-            loginView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            loginView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            loginView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            loginView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
     }
-    
     override func configureAppearance() {
         super.configureAppearance()
         backgroundColor = .white
